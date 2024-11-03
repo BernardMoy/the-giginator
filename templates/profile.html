@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your profile-The Giganator
+{% endblock %}
+
+{% block script %}
+{% endblock %} 
+
+<!-- Background image and theme colors -->
+{% block bgimage %} 
+    <style>
+        body{
+            --primaryColor: #3b180d;
+            --secondaryColor: #f5e0d3;
+            background-image: url("static/orangeBG.png");
+        }
+        .wholeTop{
+            background-image: url("static/orangeLong.png");
+        }
+    </style>
+{% endblock %}
+
+
+<!-- For short bgs, set the secondline and subtitle to nothing -->
+{% block firstLine %} Your Profile and Messages {% endblock %}
+{% block secondLine %}  {% endblock %}
+{% block subtitle %}  {% endblock %}
+{% block headButton %} 
+
+{% endblock %}
+
+{% block content %}
+<!-- User profile -->
+
+<h1 class = "largeTitle"> Your profile </h1>
+<div class = "allRow">
+    <div class = "rowItem">
+        <div class = "rowContent"> 
+            Your user ID: {{ current_user.id }} <br>
+            Registered University Email: {{ current_user.email }} <br>
+            Is Organiser: {{ current_user.isOrganiser }} <br>
+        </div> 
+        <a href = "/logout" class = "smallDarkButton top bottom"> Logout </a>
+    </div> 
+</div>
+
+
+<!-- User messages -->
+
+<h1 class = "largeTitle"> Your Messages ({{messageNumber}})</h1>
+<div class = "allRow">
+    {% for entry in allMessage %}
+    <div class = "rowItem">
+        <div class = "rowContent"> 
+            <h1 class = "largeTitle"> {{ entry.title }} </h1>
+            <div class = "gray"> Sent on {{entry.date}}, {{entry.time}} <br></div>
+            Message: <div class = "profileMessage"> {{entry.content}} </div>
+        </div> 
+    </div> 
+    {% else %}
+    <div class = "rowItem">
+        <div class = "rowContent"> 
+            <h1 class = "largeTitle"> You don't have any messages yet. </h1>
+        </div> 
+    </div> 
+    {% endfor %}
+</div>
+
+{% endblock %}

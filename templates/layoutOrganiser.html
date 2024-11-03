@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="static/faviconOrg.ico">
+        <link rel="stylesheet" href = "/static/css/general.css">
+        <link rel="stylesheet" href = "/static/css/topbar.css">
+        <link rel="stylesheet" href = "/static/css/headContent.css">
+        <link rel="stylesheet" href = "/static/css/mainContent.css">
+        {% block script %}
+        {% endblock %}
+
+        <!-- Background images -->
+        <style>
+            @font-face {
+                font-family: 'Trebuchet MS';
+                src:  url('static/trebuc.woff2') format('woff2'),
+                    url('static/Trebuchet-MS-Italic.woff2') format('woff2');
+            }
+            .eventItem{
+                background-image: url("static/eventBG.png");
+            }
+            .footer{
+                background-image: url("static/footerBG.png");
+            }
+        </style>
+        {% block bgimage %}{% endblock %}
+
+    </head>
+
+
+
+    <body>
+        <div class = "wholeTop">
+            <a href = "/organiserIndex"><img id = "logo" class = "left" src = "static/logowhite.png" alt = "The giginator logo"></a>
+            <!-- The body consists of topbar, headContent and mainContent-->
+            <!--Navigation bar-->
+            <div class = "topbar">
+                <ul class = "left">
+                    <li><a href = "/index"> Attendee's page </a></li>
+                    <li><a href = "/organiserIndex"> Organiser's home </a></li>
+                    <li><a href = "/organiserManageEvent"> Manage events </a></li>
+                    <li><a href = "/organiserManageUser"> Manage users </a></li>
+                    <li><a href = "/organiserMessage">Manage messages </a></li>
+                    <li><a href = "/logout" class = "highlighted right"> Logout </a>
+                </ul>
+            </div>
+
+
+            <!--A large title (head content) on every page-->
+            <div class = "headContent left" >
+                <h1> {% block firstLine %}{% endblock %} </h1>
+                <h1> {% block secondLine %}{% endblock %} </h1>
+                <div class = "subtitle"> {% block subtitle %}{% endblock %} </div>
+                <div class = "headButton"> {% block headButton %}{% endblock %} </div>
+            </div>
+        </div>
+
+        <!--Main content-->
+        <div class = "mainContent left top">
+            {% if current_user.attendeeUnread %}
+            <a class = "warning warningLink" href = "/profile">You have {{current_user.attendeeUnread}} unread messages. Click here to view them.</a><br>
+            {% endif %}
+            {% if current_user.organiserUnread %}            
+            <a class = "warning warningLink" href = "/organiserMessage">You have {{current_user.organiserUnread}} unread organiser messages. Click here to view them.</a><br>
+            {% endif %} 
+            
+            {% block content %}{% endblock %}
+        </div>
+
+        <!-- Footer -->
+        <div class = "footer">
+            <div class = "left">
+                Department of Computer Science, <br>
+                University of Warwick, CV4 7AL <br>
+                E-mail: <a href = "comp-sci@dcs.warwick.ac.uk">comp-sci@dcs.warwick.ac.uk</a> <br>
+                Telephone: <a href="tel:+4402476150825">+44 (0)24 7615 0825</a>
+            </div>
+        </div>
+
+    </body>
+</html>

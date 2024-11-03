@@ -1,0 +1,55 @@
+
+/* Top logo */
+#logo{
+    position: absolute;
+    width: 300px; 
+
+}
+
+/*Navigation bar*/
+.topbar ul{
+
+    list-style-type: none;
+    /* Display lists horizontally */
+    display: flex;
+    justify-content: flex-end;
+}
+
+/*Navigation bar item boxes*/
+.topbar ul li{
+    margin: 10px;
+}
+
+/*Navigation bar text*/
+.topbar ul li a{
+    color: white;  
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.topbar ul li a.highlighted{
+    background-color: white;
+    color: var(--primaryColor); 
+}
+
+.topbar ul li a.highlighted:hover{
+    background-color: var(--secondaryColor);
+}
+
+.topbar ul li a.highlighted:active{
+    background-color: var(--primaryColor);
+    color: white;
+}
+
+.topbar ul li a:hover{
+    background-color: white;
+    color: var(--primaryColor)
+}
+
+.topbar ul li a:active{
+    background-color: var(--primaryColor);
+    color: white;
+}

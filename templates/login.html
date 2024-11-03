@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login-The Giganator
+{% endblock %}
+
+{% block script %}
+<script>
+    function validateLogin(){
+        var email = document.getElementById("email").value
+        warning = document.getElementById("warning")
+
+        const invalid = /[<>"'&]/
+        if (invalid.test(email)){
+            warning.innerHTML = "Email contains invalid characters: < > \" ' &";
+            return false;
+        }
+    }
+</script>
+{% endblock %} 
+
+<!-- Background image and theme colors -->
+{% block bgimage %} 
+    <style>
+        body{
+            --primaryColor: #2a0d3b;
+            --secondaryColor: #e8dcef;
+            background-image: url("static/purpleBG.png");
+        }
+        .wholeTop{
+            background-image: url("static/purpleLong.png");
+        }
+    </style>
+{% endblock %}
+
+
+<!-- For short bgs, set the secondline and subtitle to nothing -->
+{% block firstLine %} Login to The Giginator {% endblock %}
+{% block secondLine %}  {% endblock %}
+{% block subtitle %}  {% endblock %}
+{% block headButton %} 
+
+{% endblock %}
+
+{% block content %}
+    <div>
+        <div class = "warning transparentBox" id = "warning">{{ warning }}</div>
+        <form action = "/loginAuthentication" method = 'POST' onsubmit="return validateLogin()">
+            <div class = "transparentBox"> Email: <input id = "email" type = "text" name = "email" placeholder = " user@warwick.ac.uk" class = "messageTitle"> </div>
+            <div class = "transparentBox"> Password: <input type = "password" name = "password" placeholder = " Password"> </div>
+            <div class = "transparentBox"> <input type = "submit" value = "Login" class = "largeDarkButton"> </div>
+        </form>
+
+        <div class = "transparentBox"> 
+            Don't have an account yet? <a href = "/register">Register</a> with your university email.
+        </div>
+    </div>
+{% endblock %}
+

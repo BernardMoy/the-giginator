@@ -1,0 +1,128 @@
+.mainContent{
+    flex-grow: 1;
+}
+
+.transparentBox{
+    margin-left: 10px;
+    margin-right: 10px;
+
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.allEvent{
+    display: flex;
+    flex-wrap: wrap;   /* Wrap into multiple lines */
+    
+}
+
+.largeTitle{
+    font-size: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+.eventItem{
+    text-decoration: none;
+    background-color: var(--secondaryColor);
+    border-radius: 25px;
+    margin: 20px;
+    margin-top:25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 25%;   /*Display in rows of 3*/
+    justify-content: left;
+}
+
+
+.eventName{
+    display: inline-flex;
+    font-size: 25px;
+    margin-top: 15px;
+
+}
+
+.eventCapacity{
+    padding-left: 15px;
+    display: inline-flex;
+}
+
+.eventDate{
+    display: inline-flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+}
+
+.eventTime{
+    display: inline-flex;
+    padding-top:10px;
+    padding-right: 10px;
+}
+
+.eventDuration{
+    display: inline-flex;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.eventLocation{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+
+.allRow{
+    display: flex;
+    flex-direction: column;
+}
+
+.allRow .rowItem{
+    text-decoration: none;
+    line-height: 35px;
+    background-color: var(--secondaryColor);
+    border-radius: 25px;
+    margin-top:15px;
+    margin-bottom: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    width: 75%;
+    justify-content: left;
+}
+
+.allRow .rowContent{
+    padding-bottom: 10px;
+}
+
+.allRow .rowItem .secondRow{
+    display: inline-flex;
+}
+
+/* Whole coloured area */
+.buttonBox:hover{
+    background-color: white;
+}
+.buttonBox:active{
+    background-color: var(--primaryColor);
+    color: white;
+}
+/* Text inside the coloured area */
+.buttonBox:active *{
+    color: white;
+}
+
+
+/* Organiser message page */
+.messageTitle{
+    width: 45%;
+}
+
+.profileMessage{
+    max-width: 100%;
+    overflow: auto;
+    word-wrap: break-word;
+}
+

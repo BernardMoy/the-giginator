@@ -1,0 +1,204 @@
+
+/*Entire document*/
+*{
+    margin:0;
+	padding:0;
+	border:0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: var(--primaryColor);
+    line-height: 30px;
+    font-size: 18px;
+}
+
+
+/* Footer */
+.footer {
+    display: flex;
+    flex-direction: column;
+    height:65px;
+    width: 100%;
+    bottom: 0;
+
+    background-color: var(--secondaryColor);
+    background-repeat: no-repeat;
+    padding-top: 23px;
+    padding-bottom: 40px;
+}
+
+.footer *{
+    color: var(--primaryColor);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+
+/* Background image */
+body{
+    background-size: 100%;
+    background-position: center top;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.wholeTop, .eventItem{
+    padding-top: 10px;
+    padding-bottom: 30px;
+    background-size: 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+
+
+/*Default: 35px margin on left and right of the page, 15px on the top of the page*/
+.top{
+    margin-top: 15px;
+}
+
+.left{
+    margin-left: 80px;
+}
+
+.right{
+    margin-right: 80px;
+}
+
+.bottom{
+    margin-bottom: 15px;
+}
+
+
+/* Red text */
+.warning{
+    color: rgb(255, 0, 89);
+}
+
+.warningLink:active{
+    color:black;
+}
+
+/* Gray text */
+.gray{
+    color: gray;
+}
+
+
+/* large White buttons (text inside) */
+.largeWhiteButton{
+    text-decoration: none;
+    background-color: white;
+    color: var(--primaryColor); 
+    font-size: 25px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid var(--primaryColor)
+}
+
+.largeWhiteButton:hover{
+    background-color: var(--secondaryColor);
+}
+
+.largeWhiteButton:active{
+    background-color: var(--primaryColor);
+    color: White;
+}
+
+/* small White buttons (text inside) */
+.smallWhiteButton{
+    text-decoration: none;
+    background-color: white;
+    color: var(--primaryColor); 
+    font-size: 18px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid var(--primaryColor)
+}
+
+.smallWhiteButton:hover{
+    background-color: var(--secondaryColor);
+}
+
+.smallWhiteButton:active{
+    background-color: var(--primaryColor);
+    color: White;
+}
+
+
+
+.smallDarkButton{
+    text-decoration: none;
+    background-color: var(--primaryColor);
+    color: white; 
+    font-size: 18px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid var(--primaryColor)
+}
+
+.smallDarkButton:hover{
+    background-color: var(--secondaryColor);
+    color: var(--primaryColor);
+}
+
+.smallDarkButton:active{
+    background-color: white;
+}
+
+/* large Light buttons (text inside) */
+.largeLightButton{
+    text-decoration: none;
+    background-color: var(--secondaryColor);
+    color: var(--primaryColor); 
+    font-size: 25px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid var(--primaryColor)
+}
+
+.largeLightButton:hover{
+    background-color: white;
+}
+
+.largeLightButton:active{
+    background-color: var(--primaryColor);
+    color: White;
+}
+
+/* large Dark buttons (text inside) */
+.largeDarkButton{
+    text-decoration: none;
+    background-color: var(--primaryColor); 
+    color: white;
+    font-size: 25px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid var(--primaryColor)
+}
+
+.largeDarkButton:hover{
+    background-color: var(--secondaryColor);
+    color: var(--primaryColor); 
+}
+
+.largeDarkButton:active{
+    background-color: white;
+    color: var(--primaryColor); 
+}
+
+
+
+

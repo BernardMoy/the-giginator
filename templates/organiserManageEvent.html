@@ -1,0 +1,119 @@
+{% extends "layoutOrganiser.html" %}
+
+{% block title %}
+    [Organiser] Manage Events-The Giganator
+{% endblock %}
+
+{% block script %}
+<script>
+    function create(){
+        box = document.getElementById("createEvent");
+        box.innerHTML = (`
+            <div class = "allRow">
+                <form action = "/createEvent" method="POST" onsubmit = "return validateInput()">
+                    <div class = "rowItem"> 
+                        <div id = "warning" class = "warning"></div>
+                        Event name: <input id = "name" type = "text" name = "name" placeholder = " Name of the event"> <br>
+                        Event date: <input type = "text" name = "date" placeholder = " 02-03-2023">  <br>
+                        Event time: <input type = "text" name = "time" placeholder = " 4:30pm-5:00pm">  <br>
+                        Event duration: <input type = "text" name = "duration" placeholder = " 1 hour">  <br>
+                        Event capacity: <input id = "capacity" type = "text" name = "capacity" placeholder = " 20">  <br>
+                        Event location: <input type = "text" name = "location" placeholder = " CS 0.01">  <br>
+                        <div class = "warning"> Once an event is created, deleting it will notify all users. </div>
+                        <input type = "submit" value = "Create" class = "smallDarkButton"> </div>
+                    </div>
+                </form>
+            </div>`
+        );
+    }
+
+    function validateInput(){
+        var name = document.getElementById("name").value;
+        var capacity = document.getElementById("capacity").value;
+        var warning = document.getElementById("warning");
+        
+        //Empty name
+        if (name == ""){
+            warning.innerHTML = ("Event name cannot be empty.");
+            return false;
+        }
+
+        //Empty capacity
+        if (capacity == ""){
+            warning.innerHTML = ("Event capacity cannot be empty.");
+            return false;
+        }
+
+        //Capacity not integer
+        var capacityInteger = parseInt(capacity)
+
+        if (isNaN(capacityInteger)){     //parseInt return NaN = not integer
+            warning.innerHTML = ("Event capacity must be an integer.")
+            return false;
+        }
+        
+        else if (capacityInteger < 1){
+            warning.innerHTML = ("Event capacity must be at least 1.")
+            return false;
+        }
+
+        return true;
+    }
+
+</script>
+{% endblock %}
+
+<!-- Background image and theme colors -->
+{% block bgimage %} 
+    <style>
+        body{
+            --primaryColor: #0d103b;
+            --secondaryColor: #dce8ef;
+            background-image: url("static/blueBG.png");
+        }
+        .wholeTop{
+            background-image: url("static/blueLong.png");
+        }
+    </style>
+{% endblock %}
+
+
+<!-- For short bgs, set the secondline and subtitle to nothing -->
+{% block firstLine %} Manage Events {% endblock %}
+{% block secondLine %}  {% endblock %}
+{% block subtitle %}  {% endblock %}
+{% block headButton %} 
+{% endblock %} 
+
+
+{% block content %}
+    <h1 class = "largeTitle">Manage Events</h1>
+    <div class = "warning top bottom"> {{warning}} </div>
+    <button class = "smallDarkButton" onclick = "create()"> Create an Event </button>
+    <div id = "createEvent"></div>
+
+    <!-- display all events and buttons to delete them -->
+    <div class = "allRow">
+
+        {% for entry in allEvent %}
+        <a class = "rowItem buttonBox" href = "{{ url_for('organiserEvent', id = entry.eventId ) }}">
+            <div class = "rowContent"> 
+                <h1 class = "largeTitle"> {{entry.name}} </h1>
+                {{entry.date}}, {{entry.location}}, {{entry.time}} ({{entry.duration}}) <br>
+                Capacity: {{entry.capacity}} <br>
+                Number of spaces remaining: {{entry.remaining}} 
+            </div> 
+        </a>
+
+        {% else %}
+        <div class = "rowItem">
+            <div class = "rowContent"> 
+                <h1 class = "largeTitle"> There aren't any events at the moment. </h1> 
+            </div>  
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends "layoutOrganiser.html" %}
+
+{% block title %}
+    [Organiser] New Message-The Giganator
+{% endblock %}
+
+{% block script %}
+<script>
+    function newMessage(){
+        newMessageBox = document.getElementById("newMessage");
+        newMessageBox.innerHTML = (`
+        <div class = "allRow">
+            <div class = "rowItem">
+                <div id = "warning" class = "warning"></div>
+                <form class = "rowContent" action = "/sendMessage" method = "POST" onsubmit = "return validateMessage()"> 
+                    Message title: <input type = "text" id = "title" name = "title" placeholder=" Message title" class = "top bottom messageTitle"><br>
+
+                    Recipient: 
+                    <select name = "recipient" class = "bottom messageTitle">
+                        <option selected value = "0" class = "warning">All attendees and organisers</option>
+                        <option value = "-1" class = "warning">All organisers only</option>
+
+                        {% for entry in allUser %}
+                        <option value = "{{ entry.id }}"> (UserId:{{entry.id}}) {{ entry.email }} </option>
+                        {% endfor %}
+
+                    </select><br>
+
+                    Date: <input type = "text" name = "date" placeholder=" 02-03-2023" class = "bottom right">
+                    Time: <input type = "text" name = "time" placeholder=" 12:00pm" class = "bottom"><br>
+                    
+                    Message:<br>
+                    <textarea name = "content" rows = "5" cols = "65" placeholder = " Enter your message" class = "messageContent"></textarea><br>
+
+                    <input type = "submit" class = "smallDarkButton" value = "Send message">
+                </form> 
+            </div>
+        </div>
+        `);
+    }
+
+    function validateMessage(){
+        var message = document.getElementById("title").value;
+        var warning = document.getElementById("warning");
+        
+        //empty title
+        if (message == ""){
+            warning.innerHTML = "Message title cannot be empty.";
+            return false;
+        }
+
+    }
+
+</script>
+{% endblock %}
+
+<!-- Background image and theme colors -->
+{% block bgimage %} 
+    <style>
+        body{
+            --primaryColor: #0d103b;
+            --secondaryColor: #dce8ef;
+            background-image: url("static/blueBG.png");
+        }
+        .wholeTop{
+            background-image: url("static/blueLong.png");
+        }
+    </style>
+{% endblock %}
+
+
+<!-- For short bgs, set the secondline and subtitle to nothing -->
+{% block firstLine %} Your Organiser Messages {% endblock %}
+{% block secondLine %}  {% endblock %}
+{% block subtitle %}  {% endblock %}
+{% block headButton %} 
+{% endblock %} 
+
+
+{% block content %}
+    <button class = "smallDarkButton top" onclick = "newMessage()"> New message </button>
+
+    {% if request.args.get("success") is not none %}
+    <div class = "warning top"> {{request.args.get("success")}} </div>
+    {% endif %}
+
+    <!-- New message input box -->
+    <div id = "newMessage"></div>
+
+    <h1 class = "largeTitle">Your organiser messages ({{organiserMessageNumber}})</h1>
+    <div class = "allRow">
+        {% for entry in allOrgMessage %}
+        <div class = "rowItem">
+            <div class = "rowContent"> 
+                <h1 class = "largeTitle"> {{ entry.title }} </h1>
+                <div class = "gray"> Sent on {{entry.date}}, {{entry.time}} <br></div>
+                Message: <div class = "profileMessage"> {{entry.content}} </div>
+            </div> 
+        </div> 
+        {% else %}
+        <div class = "rowItem">
+            <div class = "rowContent"> 
+                <h1 class = "largeTitle"> You don't have any organiser messages yet. </h1>
+            </div> 
+        </div> 
+        {% endfor %}
+    </div>
+
+    <h1 class = "largeTitle">Messages sent to all attendees ({{messageNumber}})</h1>
+    <div class = "allRow">
+        {% for entry in allMessage %}
+        <div class = "rowItem">
+            <div class = "rowContent"> 
+                <h1 class = "largeTitle"> {{ entry.title }} </h1>
+                <div class = "gray"> Sent on {{entry.date}}, {{entry.time}} <br></div>
+                Message: <div class = "profileMessage"> {{entry.content}} </div>
+            </div> 
+        </div> 
+        {% else %}
+        <div class = "rowItem">
+            <div class = "rowContent"> 
+                <h1 class = "largeTitle"> There are currently no messages sent to all attendees. </h1>
+            </div> 
+        </div> 
+        {% endfor %}
+    </div>
+    
+
+
+{% endblock %}

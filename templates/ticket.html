@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your tickets-The Giganator
+{% endblock %}
+
+{% block script %}
+{% endblock %} 
+
+<!-- Background image and theme colors -->
+{% block bgimage %} 
+    <style>
+        body{
+            --primaryColor: #3b180d;
+            --secondaryColor: #f5e0d3;
+            background-image: url("static/orangeBG.png");
+        }
+        .wholeTop{
+            background-image: url("static/orangeLong.png");
+        }
+    </style>
+{% endblock %}
+
+
+<!-- For short bgs, set the secondline and subtitle to nothing -->
+{% block firstLine %} Your Tickets {% endblock %}
+{% block secondLine %}  {% endblock %}
+{% block subtitle %}  {% endblock %}
+{% block headButton %} 
+
+{% endblock %}
+
+{% block content %}
+<!-- User's tickets -->
+<h1 class = "largeTitle">Your tickets</h1>
+<div>Click inside the tickets to view barcode.</div>
+
+{% for entry in allTicket %}
+<div class = "allRow">
+    <a class = "rowItem buttonBox" href = "{{ url_for('ticketBarcode', ticketId = entry.ticketId, eventId = entry.eventId ) }}">
+        <div class = "rowContent"> 
+            <h1 class = "largeTitle"> {{entry.name}} </h1>
+            {{entry.date}}, {{entry.location}} <br> 
+            {{entry.time}} ({{entry.duration}}) <br>
+            Ticket id: {{ entry.ticketId }} <br>
+        </div> 
+    </a>
+</div>
+
+{% else %} 
+<div class = "allRow">
+    <div class = "rowItem">
+        <div class = "rowContent"> 
+            <h1 class = "largeTitle"> You don't have any tickets yet. </h1>
+        </div> 
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

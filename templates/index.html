@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Events-The Giganator
+{% endblock %}
+
+{% block script %}
+{% endblock %} 
+
+<!-- Background image and theme colors -->
+{% block bgimage %} 
+    <style>
+        body{
+            --primaryColor: #3b180d;
+            --secondaryColor: #f5e0d3;
+            background-image: url("static/orangeBG.png");
+        }
+        .wholeTop{
+            background-image: url("static/orangeLong.png");
+        }
+    </style>
+{% endblock %}
+
+
+<!-- For short bgs, set the secondline and subtitle to nothing -->
+{% block firstLine %} Upcoming Events {% endblock %}
+{% block secondLine %}  {% endblock %}
+{% block subtitle %}  {% endblock %}
+{% block headButton %} 
+
+{% endblock %}
+
+{% block content %}
+<h1 class = "largeTitle">Upcoming events</h1>
+
+Click the events below to get yourself a ticket!
+
+<div class = "allEvent">
+    {% for entry in allEvent %}
+    <a class = "eventItem buttonBox" href = "{{ url_for('event', id = entry.eventId ) }}">
+        <h1 class = "eventName"> {{ entry.name }} </h1> 
+
+        <!-- Show if remaining / capacity less than 5% -->
+        {% if entry.full %}
+        <div class = "eventCapacity warning"> FULL </div> <br>
+        {% else %}
+            {% if entry.almostFull %}
+            <div class = "eventCapacity warning"> Last {{ entry.remaining }} spaces</div> <br>
+            {% else %} 
+            <br>
+            {% endif %}
+        {% endif %}
+
+        <div class = "eventDate"> {{ entry.date }} </div>
+        <div class = "eventTime"> {{ entry.time }}</div> 
+        <div class = "eventDuration"> ({{entry.duration}}) </div>
+        <div class = "eventLocation"> {{entry.location}} </div>
+    </a>
+    {% else %}
+    <a class = "eventItem">
+        <h1 class = "eventName"> There are no events at the moment. </h1> 
+        <div class = "eventCapacity warning"></div> <br>
+        <div class = "eventDate"></div>
+        <div class = "eventTime"></div> 
+        <div class = "eventDuration"> </div>
+        <div class = "eventLocation"> Come back later! </div>
+    </a>
+    {% endfor %}
+</div> 
+
+{% endblock %}

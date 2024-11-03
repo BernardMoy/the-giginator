@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Event-The Giganator
+{% endblock %}
+
+{% block script %}
+<!-- JSBarcode library for barcodes -->
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.8.0/dist/JsBarcode.all.min.js"></script>
+<script>
+    var barcodeId = "{{ request.args.get('id') }}";
+    function createBarcode(value) {
+        JsBarcode("#barcode", value);
+    }
+</script>
+
+{% endblock %} 
+
+<!-- Background image and theme colors -->
+{% block bgimage %} 
+    <style>
+        body{
+            --primaryColor: #3b180d;
+            --secondaryColor: #f5e0d3;
+            background-image: url("static/orangeBG.png");
+        }
+        .wholeTop{
+            background-image: url("static/orangeLong.png");
+        }
+    </style>
+{% endblock %}
+
+
+<!-- For short bgs, set the secondline and subtitle to nothing -->
+{% block firstLine %} This Event {% endblock %}
+{% block secondLine %}  {% endblock %}
+{% block subtitle %}  {% endblock %}
+{% block headButton %} 
+
+{% endblock %}
+
+{% block content %}
+
+<div class = "allRow">
+    <div class = "largeTitle"> Event details </div>
+    <div class = "rowItem">
+        <div class = "rowContent"> 
+            <h1 class = "largeTitle"> {{entry.name}} </h1>
+            Event date: {{entry.date}} <br>
+            Event location: {{entry.location}} <br>
+            Event time: {{entry.time}} ({{entry.duration}}) <br>
+        </div> 
+
+        <!-- Get or cancel ticket button -->
+        <form action = {{route}} method = {{method}}>
+            <!-- Provide only event id -->
+            <input type = "hidden" name = "eventId" value = "{{ request.args.get('id') }}">
+            <input class = "smallDarkButton secondRow" type = "submit" value = "{{buttonName}} ticket"><br>
+            
+        </form>
+        {{ showBarcodeButton | safe }}
+
+    </div>
+    
+</div>
+
+
+<a class = "smallWhiteButton top bottom" href = "/index"> Back </a><br>
+‎ 
+
+
+{% endblock %}

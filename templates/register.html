@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register-The Giganator
+{% endblock %}
+
+{% block script %}
+<script>
+    function validateRegister(){
+        var warning = document.getElementById("infoWarning");
+        var email = document.getElementById("email").value;
+        // 1. Invalid email format
+        if (email == "" || email == "warwick.ac.uk"){
+            warning.innerHTML = "Email cannot be empty.";
+            return false;
+        }
+
+        if (!email.endsWith("warwick.ac.uk") || !email.includes("@")){
+            warning.innerHTML = "The email entered is in an invalid format.";
+            return false;
+        }
+
+        // Input contains invalid characters.
+        const invalid = /[<>"'&]/
+        if (invalid.test(email)){
+            warning.innerHTML = "Email contains invalid characters: < > \" ' &";
+            return false;
+        }
+  
+        var password = document.getElementById("password").value;
+        // 2. Password less than 8 characters
+        if (password.length < 8){
+            warning.innerHTML = "The length of the password must not be less than 8.";
+            return false;
+        }
+
+        // 3. Password don't have numbers
+        // Look for numbers from 0-9 (character set)
+        const numbers = /[0-9]/;
+        // test the string to find a match of number 0 to 9 in the string
+        if (!numbers.test(password)){
+            warning.innerHTML = "Password must contain at least one number.";
+            return false;
+        }
+
+        // 4. Password don't have capital letters
+        const capitals = /[A-Z]/;
+        if (!capitals.test(password)){
+            warning.innerHTML = "Password must contain at least one capital letter.";
+            return false;
+        }
+
+        // 5. Password don't have small letters
+        const smalls = /[a-z]/;
+        if (!smalls.test(password)){
+            warning.innerHTML = "Password must contain at least one small letter.";
+            return false;
+        }
+
+
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        // 6. Confirm password not equal to password
+        if (confirmPassword != password){
+            warning.innerHTML = "The password and the confirmed password does not match.";
+            return false;
+        }
+
+        return true;
+    }
+</script>
+{% endblock %} 
+
+<!-- Background image and theme colors -->
+{% block bgimage %} 
+    <style>
+        body{
+            --primaryColor: #2a0d3b;
+            --secondaryColor: #e8dcef;
+            background-image: url("static/purpleBG.png");
+        }
+        .wholeTop{
+            background-image: url("static/purpleLong.png");
+        }
+    </style>
+{% endblock %}
+
+
+<!-- For short bgs, set the secondline and subtitle to nothing -->
+{% block firstLine %} Register with your University Email Account {% endblock %}
+{% block secondLine %}  {% endblock %}
+{% block subtitle %}  {% endblock %}
+{% block headButton %} 
+
+{% endblock %}
+
+{% block content %}
+    <div>
+        <div id = "infoWarning" class = "warning"></div>
+        <div id = "warning" class = "warning transparentBox"> {{ warning }}</div>
+
+        <form onsubmit = "return validateRegister()" action = "/registerAuthentication" method = 'POST'>
+            <div class = "transparentBox"> Email: <input id = "email" type = "text" name = "email" placeholder = " user@warwick.ac.uk" class = "messageTitle"></div>
+            <div class = "transparentBox"> Password: <input id = "password" type = "password" name = "password" placeholder = " Password"></div>
+            <div class = "transparentBox"> Confirm password: <input id = "confirmPassword" type = "password" name = "confirmPassword" placeholder = " Confirm password"></div>
+            <div class = "transparentBox gray"> Passwords should be at least 8 characters long, with a combination of numbers, capital and small letters.</div>
+            <div class = "transparentBox"> <input type = "submit" value = "Register and login" class = "largeDarkButton"> </div>
+        </form>
+    </div>
+{% endblock %}
