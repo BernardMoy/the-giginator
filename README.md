@@ -1,20 +1,16 @@
-# README and VIDEO
+# THE GIGANATOR Event managing website 
+The Giganator is a website made using **Python and Flask**, that provides a platform for organisers to create events and sell tickets, and allows users to request and cancel tickets.
 
-Your _readme_ goes here
-Users are divided into two classes, attendee and organisers. It is designed such that all organisers must register as an attendee first, so that every organiser must also be attendees. There is a button on the navigation bar to switch between attendee' page and organiser's page of the same account. This is to allow organisers to preview how attendee's interface would look like without creating another attendee account.
+# Features 
+- Users of two classes: Attendee and organisers (Every organisers must also be attendees)
+- Attendees can request a ticket with a barcode, and can also cancel a ticket
+- Organisers can create and delete an event
+- Organisers can promote an attendee
+- Organisers receive notifications when an event has <5% spaces left
+- Organisers can send a message to a specific user, to all organisers or to all users 
+- User's identity needs to be re-verified when performing organiser operations, such as deleting event or promoting user
+- Clear theme colors to indicate the pages the user is visiting: Organiser access restricted pages have a different theme color
 
-Extra features:
-Apart from the basic requirements,
-
-There are security checks when registering a new account, and also when deleting an event and promoting an user, organisers will need to re-verify their password.
-In terms of security, all inputs are escaped and some symbols such as < > & " ' are not allowed when creating a new username.
-
-Organisers are able to send new messages to either a specific user, all organisers and attendees, and all organisers. The notification would be displayed on every page which requires log in.
-
-Also, there are theme colours of the webpage so that organisers can know whether they are in attendee's account or organiser's account easily.
-There is a footer in the bottom of every page to provide users contact details.
-
-Your _video_ must replace the `demo.mp4` file in this folder
-
-Before submitting your coursework, run `./clean.sh` as this will remove the virtual environment which can be reconstructed locally.
+# Video 
+The video attached demonstrates all features available in this website.
 
