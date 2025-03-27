@@ -1,4 +1,4 @@
-# THE GIGANATOR Event managing website 
+# THE GIGINATOR Event managing website 
 The Giganator is a website made using **Python and Flask**, that provides a platform for organisers to create events and sell tickets, and allows users to request and cancel tickets.
 
 # Features 
